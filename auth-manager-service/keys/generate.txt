@@ -1,0 +1,7 @@
+1. Generate private key
+
+winpty openssl ecparam -name secp521r1 -genkey -noout -out private.key
+
+2. Generate public key
+
+winpty openssl ec -in private.key -pubout -out public.key

@@ -1,0 +1,17 @@
+server:
+  port: 8091
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+  r2dbc:
+    url: "r2dbc:postgresql://localhost:5432/management_db"
+    username: "management_techuser"
+    password: "password1"
+    pool:
+      initial-size: 10
+      max-size: 10
+      max-idle-time: 30m
+    properties:
+      schema: public

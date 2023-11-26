@@ -1,0 +1,5 @@
+database:
+  database-url: "localhost:5432/management_db"
+  database-user: "management_techuser"
+  database-password: "password1"
+  max-pool-size: 10
