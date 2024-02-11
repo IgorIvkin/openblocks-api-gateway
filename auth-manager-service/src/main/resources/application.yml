@@ -17,6 +17,8 @@ spring:
       schema: public
 
 app:
+  access-token-store:
+    type: BASIC
   jwt:
     private-key: |-
       -----BEGIN EC PRIVATE KEY-----

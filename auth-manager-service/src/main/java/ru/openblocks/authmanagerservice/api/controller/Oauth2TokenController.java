@@ -26,9 +26,17 @@ public class Oauth2TokenController {
     @PostMapping(value = "/token",
             produces = {MediaType.APPLICATION_JSON_VALUE},
             consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public Mono<Oauth2TokenResponse> token(ServerWebExchange serverWebExchange) {
+    public Mono<Oauth2TokenResponse> jwtToken(ServerWebExchange serverWebExchange) {
         return serverWebExchange.getFormData()
-                .flatMap(formData -> authenticationService.getToken(getOauth2TokenRequest(formData)));
+                .flatMap(formData -> authenticationService.getJwtToken(getOauth2TokenRequest(formData)));
+    }
+
+    @PostMapping(value = "/authorize",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public Mono<Oauth2TokenResponse> authorize(ServerWebExchange serverWebExchange) {
+        return serverWebExchange.getFormData()
+                .flatMap(formData -> authenticationService.getAccessToken(getOauth2TokenRequest(formData)));
     }
 
     @GetMapping(value = "/.well-known/jwks.json",
