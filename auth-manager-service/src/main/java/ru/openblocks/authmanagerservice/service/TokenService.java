@@ -17,6 +17,7 @@ import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.openblocks.authmanagerservice.api.dto.jwks.get.JwksResponse;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -26,6 +27,7 @@ import java.security.interfaces.ECPrivateKey;
 import java.security.interfaces.ECPublicKey;
 import java.sql.Timestamp;
 import java.time.*;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -250,7 +252,9 @@ public class TokenService {
      *
      * @return current JWK as JWKS
      */
-    public String jwks() {
-        return jwk.toString();
+    public JwksResponse jwks() {
+        return JwksResponse.builder()
+                .keys(List.of(jwk.toJSONObject()))
+                .build();
     }
 }

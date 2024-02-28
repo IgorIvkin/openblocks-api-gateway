@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import ru.openblocks.authmanagerservice.api.dto.checkauth.get.CheckAuthenticationRequest;
+import ru.openblocks.authmanagerservice.api.dto.jwks.get.JwksResponse;
 import ru.openblocks.authmanagerservice.api.dto.token.get.Oauth2TokenRequest;
 import ru.openblocks.authmanagerservice.api.dto.token.get.Oauth2TokenResponse;
 import ru.openblocks.authmanagerservice.exception.BadCredentialsException;
@@ -86,7 +87,7 @@ public class AuthenticationService {
      *
      * @return current JWK as JWKS
      */
-    public Mono<String> getJwks() {
+    public Mono<JwksResponse> getJwks() {
         return Mono.fromSupplier(tokenService::jwks);
     }
 

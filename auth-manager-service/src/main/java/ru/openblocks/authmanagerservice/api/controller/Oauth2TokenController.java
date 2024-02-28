@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+import ru.openblocks.authmanagerservice.api.dto.jwks.get.JwksResponse;
 import ru.openblocks.authmanagerservice.api.dto.token.get.Oauth2TokenRequest;
 import ru.openblocks.authmanagerservice.api.dto.token.get.Oauth2TokenResponse;
 import ru.openblocks.authmanagerservice.service.AuthenticationService;
@@ -41,7 +42,7 @@ public class Oauth2TokenController {
 
     @GetMapping(value = "/.well-known/jwks.json",
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Mono<String> getJwks() {
+    public Mono<JwksResponse> getJwks() {
         return authenticationService.getJwks();
     }
 
